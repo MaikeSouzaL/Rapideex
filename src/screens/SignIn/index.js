@@ -61,7 +61,6 @@ export default function SignIn() {
             <Image
               source={require("../../assets/LogoMoto.png")}
               style={styles.logo}
-              
             />
 
             <Text style={styles.textInput}>E-MAIL</Text>
@@ -74,6 +73,7 @@ export default function SignIn() {
             />
 
             <Text style={styles.textInput}>SENHA</Text>
+
             <View style={styles.passwordInputContainer}>
               <TextInput
                 style={styles.textInputField}
@@ -82,10 +82,12 @@ export default function SignIn() {
                 onChangeText={(text) => setPassword(text)}
                 secureTextEntry={!showPassword}
               />
+
               <TouchableOpacity
                 style={styles.togglePasswordButton}
                 onPress={togglePasswordVisibility}
               >
+                
                 <View style={styles.togglePasswordIcon}>
                   {showPassword ? (
                     <Feather name="eye" size={32} color={colors.background} />
