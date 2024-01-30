@@ -73,7 +73,7 @@ export default function Login() {
                 onPress={() => {}}
               />
               <SocialIcon
-                title="Entrar usando o facebook"
+                title="Entrar usando o Google"
                 button
                 type="google"
                 style={styles.SocialIcon}
