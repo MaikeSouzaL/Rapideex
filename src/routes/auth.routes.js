@@ -6,6 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 import SignUp from "../screens/SignUp";
 import Welcome from "../screens/welcome";
 import SignIn from "../screens/SignIn";
+import SingnUpClient from "../screens/SignUp/SignUpClient";
+import SingnUpMotoboy from "../screens/SignUp/SignUpMotoboy";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -55,6 +57,32 @@ function AuthRoutes() {
         component={SignUp}
         options={{
           title: "Escolha a Categoria",
+          headerTintColor: "#ffff",
+          statusBarColor: "#F58634",
+          headerStyle: {
+            backgroundColor: "#F58634",
+          },
+          headerLeft: () => <CustomBackButton />,
+        }}
+      />
+      <AuthStack.Screen
+        name="SingnUpClient"
+        component={SingnUpClient}
+        options={{
+          title: "Cadastro de Cliente",
+          headerTintColor: "#ffff",
+          statusBarColor: "#F58634",
+          headerStyle: {
+            backgroundColor: "#F58634",
+          },
+          headerLeft: () => <CustomBackButton />,
+        }}
+      />
+      <AuthStack.Screen
+        name="SingnUpMotoboy"
+        component={SingnUpMotoboy}
+        options={{
+          title: "Cadastro de Motoboy",
           headerTintColor: "#ffff",
           statusBarColor: "#F58634",
           headerStyle: {

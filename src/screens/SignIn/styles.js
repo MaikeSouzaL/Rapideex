@@ -112,8 +112,8 @@ export const styles = StyleSheet.create({
   },
   BtnCreateText: {
     color: colors.primary,
-    fontSize: 20,
-    padding: 10,
+    fontSize: 15,
+    padding: 8,
     fontWeight: "bold",
   },
 });

@@ -12,7 +12,7 @@ import { SocialIcon } from "react-native-elements";
 import SignUp from "../SignUp";
 import { useNavigation } from "@react-navigation/native";
 import { styles,colors } from "./styles";
-export default function SignIn({ handleSingUp }) {
+export default function SignIn() {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState("");

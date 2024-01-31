@@ -1,17 +1,20 @@
 import React from "react";
-import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import { styles, colors } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+
+import SingnUpClient from "./SignUpClient";
+import SingnUpMotoboy from "./SignUpMotoboy";
 
 export default function SignUp() {
   const navigation = useNavigation();
 
   const handleButtonLeftPress = () => {
-    console.log("Botão Esquerdo Pressionado");
+    navigation.navigate(SingnUpClient);
   };
 
   const handleButtonRightPress = () => {
-    console.log("Botão Direito Pressionado");
+    navigation.navigate(SingnUpMotoboy);
   };
 
   return (
