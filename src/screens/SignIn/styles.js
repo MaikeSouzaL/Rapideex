@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   textWarning: {
     textAlign: "center",
-    color: "#000000",
+    color: "#808080",
     fontSize: 18,
     fontWeight: "400",
   },
@@ -93,6 +93,7 @@ export const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   TextOr: {
+    color: "#808080",
     alignSelf: "center",
     fontSize: 20,
     fontWeight: "bold",
