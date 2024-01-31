@@ -1,205 +1,102 @@
 import React, { useState } from "react";
 import {
-  View,
-  Text,
-  SafeAreaView,
-  ImageBackground,
-  Image,
-  StyleSheet,
-  TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
   KeyboardAvoidingView,
-  Platform,
+  ScrollView,
 } from "react-native";
+import { SafeAreaView, Text, TextInput, View,  } from "react-native";
+
 
 import { Feather } from "react-native-vector-icons";
-
-import { useNavigation } from "@react-navigation/native";
+import { SocialIcon } from "react-native-elements";
 import SignUp from "../SignUp";
-
-// ...imports...
-
-export default function SignIn() {
+import { useNavigation } from "@react-navigation/native";
+import { styles,colors } from "./styles";
+export default function SignIn({ handleSingUp }) {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSignIn = () => {
-    // Implement your sign-in logic here
-    console.log("Signing in with:", email, password);
-    // Handle errors if authentication fails
-  };
-
-  const handleSignUp = () => {
-    navigation.navigate(SignUp);
-  };
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === "ios" ? "padding" : null}
-        enabled
-      >
-        <ImageBackground
-          source={require("../../assets/BackgroundTela.png")}
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-          blurRadius={15}
-        >
-          <View style={styles.containerInput}>
-            <Image
-              source={require("../../assets/LogoMoto.png")}
-              style={styles.logo}
-            />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <SafeAreaView>
+          <Text style={styles.textTitle}>Login</Text>
 
-            <Text style={styles.textInput}>E-MAIL</Text>
+          <View style={styles.containerInput}>
+            <Text style={styles.textWarning}>
+              Por Favor entre com seu email e senha para fazer o Login.
+            </Text>
             <TextInput
-              style={styles.textInputField}
-              placeholder="Seu e-mail"
+              placeholder="Email"
               value={email}
               onChangeText={(text) => setEmail(text)}
               keyboardType="email-address"
+              style={styles.input}
             />
 
-            <Text style={styles.textInput}>SENHA</Text>
+            <TextInput
+              placeholder="Senha"
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+              secureTextEntry={!showPassword}
+              style={styles.InputPassword}
+            />
 
-            <View style={styles.passwordInputContainer}>
-              <TextInput
-                style={styles.textInputField}
-                placeholder="Sua senha"
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-                secureTextEntry={!showPassword}
+            <TouchableOpacity
+              style={styles.togglePasswordButton}
+              onPress={togglePasswordVisibility}
+            >
+              <View style={styles.togglePasswordIcon}>
+                {showPassword ? (
+                  <Feather name="eye" size={28} color={colors.primary} />
+                ) : (
+                  <Feather name="eye-off" size={28} color={colors.secondary} />
+                )}
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.BtnLogin}>
+              <Text style={styles.BtnLoginText}>Entrar</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.forgot}>Esqueceu sua senha?</Text>
+            <Text style={styles.TextOr}>Ou</Text>
+            <View style={styles.ContainerSocialIcon}>
+              <SocialIcon
+                title="Entrar usando o facebook"
+                button
+                type="facebook"
+                style={styles.SocialIcon}
+                onPress={() => {}}
               />
-
-              <TouchableOpacity
-                style={styles.togglePasswordButton}
-                onPress={togglePasswordVisibility}
-              >
-                
-                <View style={styles.togglePasswordIcon}>
-                  {showPassword ? (
-                    <Feather name="eye" size={32} color={colors.background} />
-                  ) : (
-                    <Feather
-                      name="eye-off"
-                      size={32}
-                      color={colors.background}
-                    />
-                  )}
-                </View>
-              </TouchableOpacity>
+              <SocialIcon
+                title="Entrar usando o Google"
+                button
+                type="google"
+                style={styles.SocialIcon}
+                onPress={() => {}}
+              />
             </View>
-
-            <TouchableOpacity
-              style={styles.primaryButton}
-              onPress={handleSignIn}
-              activeOpacity={0.7}
-            >
-              <Text style={styles.buttonText}>Acessar</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.secondaryButton}
-              onPress={handleSignUp}
-            >
-              <Text style={styles.buttonText}>Cadastrar</Text>
-            </TouchableOpacity>
           </View>
-        </ImageBackground>
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+        </SafeAreaView>
+      </ScrollView>
+      <TouchableOpacity style={styles.BtnCreate}>
+        <Text
+          style={styles.BtnCreateText}
+          onPress={() => navigation.navigate(SignUp)}
+        >
+          Criar minha conta
+        </Text>
+      </TouchableOpacity>
+    </KeyboardAvoidingView>
   );
 }
-
-const colors = {
-  primary: "#F58634",
-  secondary: "#808080",
-  background: "#f7f7f7",
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  containerInput: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  logo: {
-    width: 230,
-    height: 230,
-    marginTop: 30,
-    marginBottom: 30,
-    resizeMode: "contain",
-  },
-  textInput: {
-    color: colors.primary,
-    fontSize: 16,
-    fontWeight: "bold",
-    padding: 12,
-    borderRadius: 10,
-  },
-  textInputField: {
-    backgroundColor: colors.secondary,
-    width: "90%",
-    height: 45,
-    padding: 12,
-    borderRadius: 10,
-    fontSize: 17,
-    color: colors.background,
-    marginBottom: 15,
-  },
-  passwordInputContainer: {
-    flexDirection: "row",
-    position: "relative",
-  },
-  togglePasswordButton: {
-    position: "absolute",
-    right: 12,
-  },
-  togglePasswordIcon: {
-    fontSize: 30,
-    padding: 5,
-  },
-  primaryButton: {
-    backgroundColor: colors.primary,
-    borderRadius: 10,
-    marginBottom: 10,
-    marginTop: 10,
-    width: "90%",
-    height: 45,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  secondaryButton: {
-    backgroundColor: "transparent",
-    borderWidth: 2,
-    borderColor: colors.primary,
-    borderRadius: 10,
-    marginBottom: 10,
-    marginTop: 10,
-    width: "90%",
-    height: 45,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    fontSize: 20,
-    color: "#fff",
-    fontWeight: "bold",
-  },
-});
